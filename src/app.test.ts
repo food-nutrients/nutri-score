@@ -59,7 +59,7 @@ test("Test individual nutrients", () => {
   const score: NutriScore = new NutriScore();
   expect(score.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FIBERS][FOOD_TYPE.SOLID], 3)).toBe(3);
   expect(score.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.PROTEINS][FOOD_TYPE.SOLID], 5)).toBe(3);
-  expect(score.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FRUIT_PERCENTAGE][FOOD_TYPE.SOLID], 42)).toBe(1);
+  expect(score.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FRUIT][FOOD_TYPE.SOLID], 42)).toBe(1);
 
 });
 

@@ -9,7 +9,7 @@ export class NutriScore {
         const badNutrientsScore: number = this.calculateNutrientListScore(badNutrients, foodType, nutrientValues);
         const goodNutrientsScore: number = this.calculateNutrientListScore(goodNutrients, foodType, nutrientValues);
 
-        const fruitScore: number = this.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FRUIT_PERCENTAGE][foodType], nutrientValues[NUTRIENT_TYPES.FRUIT_PERCENTAGE]);
+        const fruitScore: number = this.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FRUIT][foodType], nutrientValues[NUTRIENT_TYPES.FRUIT]);
         const fiberScore: number = this.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FIBERS][foodType], nutrientValues[NUTRIENT_TYPES.FIBERS]);
 
         return (badNutrientsScore >= 11 && fruitScore < 5) ? badNutrientsScore - fiberScore - fruitScore : badNutrientsScore - goodNutrientsScore;
