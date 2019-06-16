@@ -42,7 +42,7 @@ jobs:
 
       - persist_to_workspace:
           root: ~/repo
-          <<: *whitelist
+          # <<: *whitelist
 
   lint:
     <<: *defaults
@@ -75,7 +75,7 @@ jobs:
 
       - persist_to_workspace:
           root: ~/repo
-          <<: *whitelist
+          # <<: *whitelist
 
   coveralls:
     <<: *defaults
@@ -101,7 +101,7 @@ jobs:
 
       - persist_to_workspace:
           root: ~/repo
-          <<: *whitelist
+          # <<: *whitelist
 
   deploy:
     <<: *defaults
