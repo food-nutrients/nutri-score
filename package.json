@@ -1,0 +1,20 @@
+{
+  "name": "nutri-score-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "jest --watch --coverage",
+    "docs": "typedoc --out docs --mode file --name Browser --theme minimal  --hideGenerator --exclude src/*.test.* src"
+  },
+  "keywords": [],
+  "author": "Alex Kolarski",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.1"
+  }
+}
