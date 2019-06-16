@@ -64,6 +64,9 @@ jobs:
           at: ~/repo
 
       - run:
+          name: Install browserify
+          command: yarn global add browserify
+      - run:
           name: Browserify TypeScript code
           command: yarn browserify
 
