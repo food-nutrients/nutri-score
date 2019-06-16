@@ -12,6 +12,9 @@ whitelist: &whitelist
     - src/*
     - package.json
     - README.md
+    - .gitignore
+    - jest.config.js
+    - yarn.lock
     - tsconfig.json
     - tslint.json
 version: 2
