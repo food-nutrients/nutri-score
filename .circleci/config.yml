@@ -185,9 +185,6 @@ workflows:
               ignore: /.*/
           requires:
             - checkout
-      - browserify:
-          requires:
-            - build
       - build:
           filters:
             tags:
@@ -197,6 +194,9 @@ workflows:
           requires:
             - test
             - lint
+      - browserify:
+          requires:
+            - build
       - deploy:
           filters:
             tags:
@@ -205,3 +205,4 @@ workflows:
               ignore: /.*/
           requires:
             - build
+            - browserify
