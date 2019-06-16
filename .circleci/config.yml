@@ -5,6 +5,7 @@ defaults: &defaults
 
 whitelist: &whitelist
   paths:
+    - .git
     - .npmignore
     - coverage/*
     - dist/*
