@@ -1,15 +1,42 @@
 {
   "name": "nutri-score-calculator",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/app.js",
-  "scripts": {
-    "test": "jest --coverage",
-    "docs": "typedoc --out docs --mode file --name Browser --theme minimal  --hideGenerator --exclude src/*.test.* src"
+  "description": "Nutri-Score, an indicator of nutritional quality",
+  "main": "./dist/app.js",
+  "types": "./dist/app.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/food-nutrients/nutri-score.git"
   },
-  "keywords": [],
-  "author": "Alex Kolarski",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/food-nutrients/nutri-score/issues"
+  },
+  "homepage": "https://github.com/food-nutrients/nutri-score",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "build": "tsc",
+    "lint": "tslint --project ./tsconfig.json",
+    "coverage": "jest --coverage",
+    "docs": "typedoc --out docs --mode file --name Nutri-Score --theme minimal  --hideGenerator --exclude src/*.test.* src"
+  },
+  "keywords": [
+    "food",
+    "food-recommendation",
+    "food-classification",
+    "nutrition",
+    "nutrients",
+    "vitamins",
+    "protein",
+    "carbs",
+    "fat",
+    "minerals",
+    "essential",
+    "foods",
+    "nutri-score"
+  ],
+  "author": "Alex Kolarski <aleks.rk@gmail.com>",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^24.0.14",

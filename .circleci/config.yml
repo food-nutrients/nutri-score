@@ -1,0 +1,197 @@
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:12.0
+
+whitelist: &whitelist
+  paths:
+    - .npmignore
+    - coverage/*
+    - dist/*
+    - node_modules/*
+    - src/*
+    - package.json
+    - README.md
+    - tsconfig.json
+    - tslint.json
+version: 2
+jobs:
+  checkout:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: Install Dependencies
+          command: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/repo
+          <<: *whitelist
+
+  lint:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Lint TypeScript code
+          command: yarn lint
+
+  test:
+    <<: *defaults
+    environment:
+        CC_TEST_REPORTER_ID: YOUR_REPO_CC_TE1a24ea673b18f137681066ad3fec85badf586d66256e22aa5fd78818720464cbST_REPORTER_ID
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+          # download test reporter as a static binary
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      - run:
+          name: Run tests
+          command: |
+          # notify Code Climate of a pending test report using `before-build`
+            ./cc-test-reporter before-build
+            yarn coverage
+          # upload test report to Code Climate using `after-build`
+            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+
+      - persist_to_workspace:
+          root: ~/repo
+          <<: *whitelist
+
+  coveralls:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Submit coverage report to Coveralls.io
+          command: echo "skip coveralls"
+
+  build:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Build TypeScript code
+          command: yarn build
+
+      - persist_to_workspace:
+          root: ~/repo
+          <<: *whitelist
+
+  deploy:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Write NPM Token to ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+      - run:
+          name: Install dot-json package
+          command: npm install dot-json
+
+      - run:
+          name: Write version to package.json
+          command: $(yarn bin)/dot-json package.json version ${CIRCLE_TAG:1}
+
+      - run:
+          name: Publish to NPM
+          command: npm publish --access=public
+
+workflows:
+  version: 2
+
+  build:
+    jobs:
+      - checkout
+      - test:
+          requires:
+            - checkout
+      - lint:
+          requires:
+            - checkout
+      - coveralls:
+          requires:
+            - test
+      - build:
+          requires:
+            - test
+            - lint
+
+  release:
+    jobs:
+      - checkout:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+      - test:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - checkout
+      - lint:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - checkout
+      - coveralls:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - test
+      - build:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - test
+            - lint
+      - deploy:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - build
