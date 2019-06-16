@@ -1,5 +1,5 @@
 {
-  "name": "nutri-score-calculator",
+  "name": "nutri-score",
   "version": "1.0.0",
   "description": "Nutri-Score, an indicator of nutritional quality",
   "main": "./dist/app.js",
