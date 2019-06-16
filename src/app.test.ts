@@ -1,13 +1,15 @@
-import NutriScore from "./app";
+// tslint:disable: no-magic-numbers newline-per-chained-call
+import { NutriScore } from "./app";
 import { FOOD_TYPE } from "./interfaces/foodTypes";
 import { NUTRIENT_TYPES } from "./interfaces/nutrientTypes";
 import { IScoreTable } from "./interfaces/scoreTableInterface";
-import scoreTableJSON from "./scoreTable.json";
+import * as scoreTableJSON from "./scoreTable.json";
 const scoreTable: IScoreTable =  scoreTableJSON as IScoreTable;
 
 test("Test nutrient table score algo", () => {
   const scoreTable2: Array<[number, number, number]> = [
     [-Infinity, 0, 0],
+
     [1, 30, 1],
     [30, 60, 2],
     [60, 90, 3],
@@ -19,7 +21,7 @@ test("Test nutrient table score algo", () => {
     [240, 270, 9],
     [270, +Infinity, 10],
   ];
-  const score = new NutriScore();
+  const score: NutriScore = new NutriScore();
   expect(score.calculateNutrientScore(scoreTable2, -1000)).toBe(0);
   expect(score.calculateNutrientScore(scoreTable2, 0)).toBe(0);
   expect(score.calculateNutrientScore(scoreTable2, 1)).toBe(0);
@@ -29,7 +31,7 @@ test("Test nutrient table score algo", () => {
 });
 // tslint:disable: no-string-literal
 test("Test inRange method", () => {
-  const score = new NutriScore();
+  const score: NutriScore = new NutriScore();
   expect(score["inRange"](5, 1, 10)).toBeTruthy();
   expect(score["inRange"](11, 1, 10)).toBeFalsy();
   expect(score["inRange"](0, 1, 10)).toBeFalsy();
@@ -40,8 +42,8 @@ test("Test inRange method", () => {
 });
 
 test("Test calculation with special case", () => {
-  const score = new NutriScore();
-  const result = score.calculate({
+  const score: NutriScore = new NutriScore();
+  const result: number = score.calculate({
     energy: 2000,
     fibers: 3,
     fruit_percentage: 42,
@@ -54,7 +56,7 @@ test("Test calculation with special case", () => {
 });
 
 test("Test individual nutrients", () => {
-  const score = new NutriScore();
+  const score: NutriScore = new NutriScore();
   expect(score.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FIBERS][FOOD_TYPE.SOLID], 3)).toBe(3);
   expect(score.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.PROTEINS][FOOD_TYPE.SOLID], 5)).toBe(3);
   expect(score.calculateNutrientScore(scoreTable[NUTRIENT_TYPES.FRUIT_PERCENTAGE][FOOD_TYPE.SOLID], 42)).toBe(1);
@@ -62,8 +64,8 @@ test("Test individual nutrients", () => {
 });
 
 test("Test another calculation without special case", () => {
-  const score = new NutriScore();
-  const result = score.calculate({
+  const score: NutriScore = new NutriScore();
+  const result: number = score.calculate({
     energy: 0,
     fibers: 3,
     fruit_percentage: 42,
@@ -76,8 +78,8 @@ test("Test another calculation without special case", () => {
 });
 
 test("Test different calculation without special case", () => {
-  const score = new NutriScore();
-  const result = score.calculate({
+  const score: NutriScore = new NutriScore();
+  const result: number = score.calculate({
     energy: 0,
     fibers: 4,
     fruit_percentage: 60,
