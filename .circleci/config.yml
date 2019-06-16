@@ -57,8 +57,6 @@ jobs:
 
   test:
     <<: *defaults
-    environment:
-        CC_TEST_REPORTER_ID: 1a24ea673b18f137681066ad3fec85badf586d66256e22aa5fd78818720464cb
     steps:
       - attach_workspace:
           at: ~/repo
