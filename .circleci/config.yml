@@ -72,7 +72,7 @@ jobs:
               ./cc-test-reporter before-build
               yarn coverage
           
-              ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+              ./cc-test-reporter after-build --exit-code $?
 
       - persist_to_workspace:
           root: ~/repo
