@@ -4,14 +4,13 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "test": "jest --watch --coverage",
+    "test": "jest --coverage",
     "docs": "typedoc --out docs --mode file --name Browser --theme minimal  --hideGenerator --exclude src/*.test.* src"
   },
   "keywords": [],
   "author": "Alex Kolarski",
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
