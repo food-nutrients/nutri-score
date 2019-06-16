@@ -13,6 +13,7 @@ whitelist: &whitelist
     - src/*
     - package.json
     - README.md
+    - nutriScore.js
     - .gitignore
     - jest.config.js
     - yarn.lock
@@ -55,6 +56,16 @@ jobs:
           name: Lint TypeScript code
           command: yarn lint
 
+  browserify:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Browserify TypeScript code
+          command: yarn browserify
   test:
     <<: *defaults
     steps:
@@ -135,6 +146,9 @@ workflows:
       - test:
           requires:
             - checkout
+      - browserify: 
+          requires:
+            - build
       - lint:
           requires:
             - checkout
@@ -195,3 +209,4 @@ workflows:
               ignore: /.*/
           requires:
             - build
+            - browserify

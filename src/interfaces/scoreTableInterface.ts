@@ -14,6 +14,7 @@ export interface IScoreTable {
   [NUTRIENT_TYPES.FRUIT]: INutrientScore;
   [NUTRIENT_TYPES.FIBERS]: INutrientScore;
   [NUTRIENT_TYPES.PROTEINS]: INutrientScore;
+  nutriClass: INutrientScore;
 }
 
 export interface INutrientValues {

@@ -1,5 +1,5 @@
 // tslint:disable: no-magic-numbers newline-per-chained-call
-import { NutriScore } from "./app";
+import { nutriScore } from "./app";
 import { FOOD_TYPE } from "./interfaces/foodTypes";
 import { NUTRIENT_TYPES } from "./interfaces/nutrientTypes";
 import { IScoreTable } from "./interfaces/scoreTableInterface";
@@ -21,29 +21,26 @@ test("Test nutrient table score algo", () => {
     [240, 270, 9],
     [270, +Infinity, 10],
   ];
-  const score: NutriScore = new NutriScore();
-  expect(score.nutrientScore(scoreTable2, -1000)).toBe(0);
-  expect(score.nutrientScore(scoreTable2, 0)).toBe(0);
-  expect(score.nutrientScore(scoreTable2, 1)).toBe(0);
-  expect(score.nutrientScore(scoreTable2, 30)).toBe(1);
-  expect(score.nutrientScore(scoreTable2, 31)).toBe(2);
-  expect(score.nutrientScore(scoreTable2, 10000)).toBe(10);
+  expect(nutriScore.nutrientScore(scoreTable2, -1000)).toBe(0);
+  expect(nutriScore.nutrientScore(scoreTable2, 0)).toBe(0);
+  expect(nutriScore.nutrientScore(scoreTable2, 1)).toBe(0);
+  expect(nutriScore.nutrientScore(scoreTable2, 30)).toBe(1);
+  expect(nutriScore.nutrientScore(scoreTable2, 31)).toBe(2);
+  expect(nutriScore.nutrientScore(scoreTable2, 10000)).toBe(10);
 });
 // tslint:disable: no-string-literal
 test("Test inRange method", () => {
-  const score: NutriScore = new NutriScore();
-  expect(score["inRange"](5, 1, 10)).toBeTruthy();
-  expect(score["inRange"](11, 1, 10)).toBeFalsy();
-  expect(score["inRange"](0, 1, 10)).toBeFalsy();
-  expect(score["inRange"](-5, -15, -3)).toBeTruthy();
-  expect(score["inRange"](0, -1, 0)).toBeTruthy();
-  expect(score["inRange"](-1, -1, 0)).toBeFalsy();
-  expect(score["inRange"](-0.99999, -1, 0)).toBeTruthy();
+  expect(nutriScore.inRange(5, 1, 10)).toBeTruthy();
+  expect(nutriScore.inRange(11, 1, 10)).toBeFalsy();
+  expect(nutriScore.inRange(0, 1, 10)).toBeFalsy();
+  expect(nutriScore.inRange(-5, -15, -3)).toBeTruthy();
+  expect(nutriScore.inRange(0, -1, 0)).toBeTruthy();
+  expect(nutriScore.inRange(-1, -1, 0)).toBeFalsy();
+  expect(nutriScore.inRange(-0.99999, -1, 0)).toBeTruthy();
 });
 
 test("Test calculation with special case", () => {
-  const score: NutriScore = new NutriScore();
-  const result: number = score.calculate(
+  const result: number = nutriScore.calculate(
     {
       energy: 2000,
       fibers: 3,
@@ -59,15 +56,13 @@ test("Test calculation with special case", () => {
 });
 
 test("Test individual nutrients", () => {
-  const score: NutriScore = new NutriScore();
-  expect(score.nutrientScore(scoreTable[NUTRIENT_TYPES.FIBERS][FOOD_TYPE.SOLID], 3)).toBe(3);
-  expect(score.nutrientScore(scoreTable[NUTRIENT_TYPES.PROTEINS][FOOD_TYPE.SOLID], 5)).toBe(3);
-  expect(score.nutrientScore(scoreTable[NUTRIENT_TYPES.FRUIT][FOOD_TYPE.SOLID], 42)).toBe(1);
+  expect(nutriScore.nutrientScore(scoreTable[NUTRIENT_TYPES.FIBERS][FOOD_TYPE.SOLID], 3)).toBe(3);
+  expect(nutriScore.nutrientScore(scoreTable[NUTRIENT_TYPES.PROTEINS][FOOD_TYPE.SOLID], 5)).toBe(3);
+  expect(nutriScore.nutrientScore(scoreTable[NUTRIENT_TYPES.FRUIT][FOOD_TYPE.SOLID], 42)).toBe(1);
 });
 
 test("Test another calculation without special case", () => {
-  const score: NutriScore = new NutriScore();
-  const result: number = score.calculate(
+  const result: number = nutriScore.calculate(
     {
       energy: 0,
       fibers: 3,
@@ -83,8 +78,7 @@ test("Test another calculation without special case", () => {
 });
 
 test("Test different calculation without special case", () => {
-  const score: NutriScore = new NutriScore();
-  const result: number = score.calculate(
+  const result: number = nutriScore.calculate(
     {
       energy: 0,
       fibers: 4,
@@ -97,4 +91,20 @@ test("Test different calculation without special case", () => {
     FOOD_TYPE.SOLID,
   );
   expect(result).toBe(2);
+});
+
+test("Test different calculation without special case", () => {
+  const result: string = nutriScore.calculateClass(
+    {
+      energy: 0,
+      fibers: 4,
+      fruit_percentage: 60,
+      proteins: 2,
+      saturated_fats: 2,
+      sodium: 500,
+      sugar: 10,
+    },
+    FOOD_TYPE.SOLID,
+  );
+  expect(result).toBe("B");
 });

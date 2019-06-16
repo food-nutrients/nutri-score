@@ -1,28 +1,102 @@
 # Nutri-Score Calculator
+
 <p align="center">
   <img width="568" height="307" src="https://github.com/food-nutrients/nutri-score/raw/master/assets/images/nutri-score-logo.png" alt="Nutri Score logo">
 </p>
 
 > The goal of the project is to provide simple library that can calculate the Nutri-Score.
 
-![Release](https://img.shields.io/github/release/food-nutrients/nutri-score.svg) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/food-nutrients/nutri-score.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1215d67606784c51be6e00b5c277c8ea)](https://www.codacy.com/app/kolarski/nutri-score?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=food-nutrients/nutri-score&amp;utm_campaign=Badge_Grade) <a href="https://codeclimate.com/github/food-nutrients/nutri-score/maintainability"><img src="https://api.codeclimate.com/v1/badges/9aa2c2c7ac55eea0c049/maintainability" /></a> <a href="https://codeclimate.com/github/food-nutrients/nutri-score/test_coverage"><img src="https://api.codeclimate.com/v1/badges/9aa2c2c7ac55eea0c049/test_coverage" /></a> ![Dependencies](https://img.shields.io/david/food-nutrients/nutri-score.svg) [![Build Status](https://travis-ci.org/food-nutrients/nutri-score.svg?branch=master)](https://travis-ci.org/food-nutrients/nutri-score)
+![Release](https://img.shields.io/github/release/food-nutrients/nutri-score.svg) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/food-nutrients/nutri-score.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1215d67606784c51be6e00b5c277c8ea)](https://www.codacy.com/app/kolarski/nutri-score?utm_source=github.com&utm_medium=referral&utm_content=food-nutrients/nutri-score&utm_campaign=Badge_Grade) <a href="https://codeclimate.com/github/food-nutrients/nutri-score/maintainability"><img src="https://api.codeclimate.com/v1/badges/9aa2c2c7ac55eea0c049/maintainability" /></a> <a href="https://codeclimate.com/github/food-nutrients/nutri-score/test_coverage"><img src="https://api.codeclimate.com/v1/badges/9aa2c2c7ac55eea0c049/test_coverage" /></a> ![Dependencies](https://img.shields.io/david/food-nutrients/nutri-score.svg) [![Build Status](https://travis-ci.org/food-nutrients/nutri-score.svg?branch=master)](https://travis-ci.org/food-nutrients/nutri-score)
 
 ## What is Nutri-score
+
 > Nutri-Score, an indicator of nutritional quality
 
-With a release date of November 2017, the __Nutri-Score__ is by definition a new labeling system that indicates the nutritional values ​​of a product in a more simplified way. So, what is it exactly? Attached to the front of packaging, it complements the mandatory nutrition declaration required by the European Commission regulations in force.
+With a release date of November 2017, the **Nutri-Score** is by definition a new labeling system that indicates the nutritional values ​​of a product in a more simplified way. So, what is it exactly? Attached to the front of packaging, it complements the mandatory nutrition declaration required by the European Commission regulations in force.
 
 Its goal is to help consumers turn to wholesome, healthy and healthy foods, and to know exactly what to choose to fight junk food.
 
-The __Nutri-Score__ comes in the form of a logo with a 5-level scale, from the most favorable product to the least favorable nutritionally. niwali keto The device thus consists of 5 colors ranging from dark green to dark orange, and 5 letters ranging from A to E. Each color is associated with a letter.
+The **Nutri-Score** comes in the form of a logo with a 5-level scale, from the most favorable product to the least favorable nutritionally. niwali keto The device thus consists of 5 colors ranging from dark green to dark orange, and 5 letters ranging from A to E. Each color is associated with a letter.
 
 _Class A_ products are therefore considered to be the healthiest. On the other hand, when the label has a qualification approaching the letter E, it means that the food is considered too fat, too sweet or too salty.
 
 > Quote from <http://www.purebodyformation.net/nutri-score-work/>
 
-## How to use the library
+## Usage
 
-...
+### Usage in browser
+
+1. Import the library:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/nutri-score/nutriScore.js"></script>
+```
+
+2. Use it to calculate the nutri-score class like so:
+
+```js
+const nutriScoreResult = nutriScore.nutriScore.calculateClass(
+  {
+    energy: 0,
+    fibers: 4,
+    fruit_percentage: 60,
+    proteins: 2,
+    saturated_fats: 2,
+    sodium: 500,
+    sugar: 10
+  },
+  "solid"
+);
+
+console.log(nutriScoreResult); // Output: "B"
+```
+
+For more methods & usage refer to the documentation bellow
+
+### Usage in JavaScript / TypeScript projects
+
+1. Install the library
+
+```bash
+yarn add nutri-score
+```
+
+or
+
+```
+npm install nutri-score --save
+```
+
+2. Include the library in your project:
+
+```js
+import { nutriScore } from "nutri-score";
+```
+
+3. Use it to calculate the nutri-score class like so:
+
+```js
+const nutriScoreResult = nutriScore.calculateClass(
+  {
+    energy: 0,
+    fibers: 4,
+    fruit_percentage: 60,
+    proteins: 2,
+    saturated_fats: 2,
+    sodium: 500,
+    sugar: 10
+  },
+  "solid"
+);
+
+console.log(nutriScoreResult); // Output: "B"
+```
+
+Note: TypeScript definition are included in the project
+
+## Documentation
+
+... Work in progress ...
 
 ## Contribution
 

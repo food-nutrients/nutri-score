@@ -18,6 +18,7 @@
     "build": "tsc",
     "lint": "tslint --project ./tsconfig.json",
     "coverage": "jest --coverage",
+    "browserify": "tsc && browserify --standalone nutriScore dist/app.js -o nutriScore.js",
     "docs": "typedoc --out docs --mode file --name Nutri-Score --theme minimal  --hideGenerator --exclude src/*.test.* src"
   },
   "keywords": [
