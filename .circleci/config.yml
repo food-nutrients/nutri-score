@@ -66,6 +66,7 @@ jobs:
       - run:
           name: Browserify TypeScript code
           command: yarn browserify
+
   test:
     <<: *defaults
     steps:
@@ -152,9 +153,6 @@ workflows:
       - lint:
           requires:
             - checkout
-      - coveralls:
-          requires:
-            - test
       - build:
           requires:
             - test
@@ -184,14 +182,9 @@ workflows:
               ignore: /.*/
           requires:
             - checkout
-      - coveralls:
-          filters:
-            tags:
-              only: /v[0-9]+(\.[0-9]+)*/
-            branches:
-              ignore: /.*/
+      - browserify:
           requires:
-            - test
+            - build
       - build:
           filters:
             tags:
@@ -209,4 +202,3 @@ workflows:
               ignore: /.*/
           requires:
             - build
-            - browserify
