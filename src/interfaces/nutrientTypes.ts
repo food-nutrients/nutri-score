@@ -1,11 +1,11 @@
 export enum NUTRIENT_TYPES {
-    ENERGY = 'energy',
-    SUGAR = 'sugar',
-    SAT_FATS = 'saturated_fats',
-    SODIUM = 'sodium',
-    FRUIT_PERCENTAGE = 'fruit_percentage',
-    FIBERS = 'fibers',
-    PROTEINS = 'proteins'
+    ENERGY = "energy",
+    SUGAR = "sugar",
+    SAT_FATS = "saturated_fats",
+    SODIUM = "sodium",
+    FRUIT_PERCENTAGE = "fruit_percentage",
+    FIBERS = "fibers",
+    PROTEINS = "proteins",
 }
 
 export const badNutrients = [NUTRIENT_TYPES.ENERGY, NUTRIENT_TYPES.SUGAR, NUTRIENT_TYPES.SAT_FATS, NUTRIENT_TYPES.SODIUM];
