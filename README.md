@@ -8,6 +8,8 @@
 
 ![Release](https://img.shields.io/github/release/food-nutrients/nutri-score.svg) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/food-nutrients/nutri-score.svg) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1215d67606784c51be6e00b5c277c8ea)](https://www.codacy.com/app/kolarski/nutri-score?utm_source=github.com&utm_medium=referral&utm_content=food-nutrients/nutri-score&utm_campaign=Badge_Grade) <a href="https://codeclimate.com/github/food-nutrients/nutri-score/maintainability"><img src="https://api.codeclimate.com/v1/badges/9aa2c2c7ac55eea0c049/maintainability" /></a> <a href="https://codeclimate.com/github/food-nutrients/nutri-score/test_coverage"><img src="https://api.codeclimate.com/v1/badges/9aa2c2c7ac55eea0c049/test_coverage" /></a> ![Dependencies](https://img.shields.io/david/food-nutrients/nutri-score.svg) [![Build Status](https://travis-ci.org/food-nutrients/nutri-score.svg?branch=master)](https://travis-ci.org/food-nutrients/nutri-score)
 
+[Demo / Example](https://food-nutrients.github.io/nutri-score/)
+
 ## What is the Nutri-Score ?
 
 The Nutri-Score is a nutrition label that converts the nutritional value of products into a simple code consisting of 5 letters, each with its own colour.
@@ -20,8 +22,8 @@ You can therefore see at a glance which products are recommended and which shoul
 
 > Source: <https://nutriscore.colruytgroup.com/colruytgroup/en/about-nutri-score/>
 
-
 Paper: <https://pdfs.semanticscholar.org/3d1c/c206bc286bb5f80452821a0d26ff9e55b387.pdf>
+
 <p align="center">
   <img width="380" height="300" src="https://github.com/food-nutrients/nutri-score/raw/master/assets/images/nutri-scores.png" alt="Nutri Score labels example">
 </p>
