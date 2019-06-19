@@ -20,6 +20,8 @@ You can therefore see at a glance which products are recommended and which shoul
 
 > Source: <https://nutriscore.colruytgroup.com/colruytgroup/en/about-nutri-score/>
 
+
+Paper: <https://pdfs.semanticscholar.org/3d1c/c206bc286bb5f80452821a0d26ff9e55b387.pdf>
 <p align="center">
   <img width="380" height="300" src="https://github.com/food-nutrients/nutri-score/raw/master/assets/images/nutri-scores.png" alt="Nutri Score labels example">
 </p>
