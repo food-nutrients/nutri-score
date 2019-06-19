@@ -1,0 +1,12 @@
+body {
+  margin: 30px;
+}
+form {
+  width: 300px;
+  float: left;
+  margin-right: 50px;
+}
+#result {
+  margin: 0 auto;
+  text-align: center;
+}

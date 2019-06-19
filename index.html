@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Nutri Score example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/nutri-score/nutriScore.js"></script>
+  </head>
+  <body>
+    <form>
+      <div class="form-group">
+        <label for="energy">Energy (kJ)</label>
+        <input type="number" value="1000" class="form-control form-control-sm" id="energy" placeholder="Enter Energy in kJ" />
+      </div>
+      <div class="form-group">
+        <label for="saturated_fats">Saturated fats (g)</label>
+        <input type="number" value="2" class="form-control form-control-sm" id="saturated_fats" placeholder="Enter Saturated fats in g" />
+      </div>
+      <div class="form-group">
+        <label for="sugar">Sugar (g) </label>
+        <input type="number" value="10" class="form-control form-control-sm" id="sugar" placeholder="Enter Sugar in g" />
+      </div>
+      <div class="form-group">
+        <label for="fibers">Fibers (g)</label>
+        <input type="number" value="4" class="form-control form-control-sm" id="fibers" placeholder="Enter Fibers in g" />
+      </div>
+      <div class="form-group">
+        <label for="proteins">Proteins (g)</label>
+        <input type="number" value="2" class="form-control form-control-sm" id="proteins" placeholder="Enter Proteins in g" />
+      </div>
+      <div class="form-group">
+        <label for="sodium">Sodium (mg)</label>
+        <input type="number" value="500" class="form-control form-control-sm" id="sodium" placeholder="Enter Sodium in mg" />
+      </div>
+      <div class="form-group">
+        <label for="energy">% Vegitable and Fruits (%)</label>
+        <input type="number" value="60" class="form-control form-control-sm" id="fruit_percentage" placeholder="Enter % Vegitable and Fruits (0 - 100)" />
+      </div>
+
+      <button type="button" class="btn btn-primary" id="calculateNutriScore">Calculate Nutri-Score</button>
+    </form>
+    <div id="result"></div>
+    <script type="text/javascript">
+      window.document.querySelector("#calculateNutriScore").addEventListener("click", calculateNutriScore);
+
+      function calculateNutriScore(ev) {
+        var data = {
+          energy: window.document.querySelector("#energy").value,
+          fibers: window.document.querySelector("#fibers").value,
+          fruit_percentage: window.document.querySelector("#fruit_percentage").value,
+          proteins: window.document.querySelector("#proteins").value,
+          saturated_fats: window.document.querySelector("#saturated_fats").value,
+          sodium: window.document.querySelector("#sodium").value,
+          sugar: window.document.querySelector("#sugar").value
+        };
+
+        const nutriScoreClass = nutriScore.nutriScore.calculateClass(data);
+
+        const score = nutriScore.nutriScore.calculate(data);
+        console.log(score);
+        window.document.querySelector("#result").innerHTML = '<img src="images/' + nutriScoreClass + '.svg" /><h6>Score: ' + score + "</h6>";
+      }
+    </script>
+  </body>
+</html>
